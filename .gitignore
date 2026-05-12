@@ -1,0 +1,13 @@
+.env
+
+__pycache__/
+__pycache__/*
+config/__pycache__/
+config/__pycache__/*
+db/__pycache__/
+db/__pycache__/*
+elimination/__pycache__/
+elimination/__pycache__/*
+
+.newsbot/
+*.pyc
