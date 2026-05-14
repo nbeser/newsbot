@@ -3,20 +3,34 @@
 
 from feeds_db import insert_news
 from ai.ai_preperation import text_extraction
-
-
-
 from ai.ai_processor import summarize_article
 
-articles = text_extraction()
+def main():
 
-for article in articles:
+    articles = text_extraction()
 
-    ai_summary = summarize_article(
-        article["title"],
-        article["content"]
-    )
+    articles_text = ""
 
-    article["ai_summary"] = ai_summary
+    for idx, article in enumerate(articles):
 
-    print(article)
+        articles_text += f"""
+        ARTICLE {idx + 1}
+
+        LINK:
+        {article["link"]}
+
+        TITLE:
+        {article["title"]}
+
+        CONTENT:
+        {article["content"]}
+
+        """
+
+    summaries = summarize_article(articles_text)
+
+    print(summaries)
+
+
+if __name__ == "__main__":
+    main()

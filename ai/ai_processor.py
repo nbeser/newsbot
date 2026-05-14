@@ -8,19 +8,38 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
-def summarize_article(title, content):
+def summarize_article(articles_text):
+
+    # prompt = f"""
+    # You are a news analyst.
+
+    # Summarize this news article in 2 concise sentences. Be direct and do not show emotional and/or political tendency.
+
+    # TITLE:
+    # {title}
+
+    # ARTICLE:
+    # {content}
+
+    # """
 
     prompt = f"""
-    You are a news analyst.
+    Summarize each article in JSON format. Be direct and do not show emotional and/or political tendency. 
+    After you summarized, translate title and summary into Turkish language. Add translated title into translated_title, summary into translated_summary.
 
-    Summarize this news article in 2 concise sentences. Be direct and do not show emotional and/or political tendency.
+    Example:
+    [
+    {{
+        "title": "...",
+        "translated_title": "...",
+        "link": "...",
+        "summary": "..."
+        "translated_summary": "..."
+    }}
+    ]
 
-    TITLE:
-    {title}
-
-    ARTICLE:
-    {content}
-
+    Articles:
+    {articles_text}
     """
 
     response = client.models.generate_content(
