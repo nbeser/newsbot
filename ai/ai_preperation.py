@@ -14,7 +14,8 @@ def data_fetch():
         conn.close()
         return files
     except Exception as err:
-        return err
+        print(err)
+        return []
 
 def text_extraction():
     pre_data = data_fetch()
@@ -27,5 +28,5 @@ def text_extraction():
             i["content"] = text
         return pre_data
     except Exception as err:
-        return err
-
+        print(err)
+        return []

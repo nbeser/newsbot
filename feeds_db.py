@@ -1,4 +1,4 @@
-from feeds_filter import news
+from elimination.feeds_filter import news
 from db.dbmanager import DbManager
 from db.model import News
 
