@@ -27,7 +27,7 @@ class News:
                 link=i.get("link"),
                 is_shared=i.get("is_shared", False),
                 source=i.get("source"),
-                is_translated=i.get("is_translated"),
+                is_translated=i.get("is_translated", False),
                 translated_title=i.get("translated_title", None),
                 translated_summary=i.get("translated_summary", None)
             ))

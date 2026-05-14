@@ -1,5 +1,4 @@
 import feedparser
-import trafilatura
 from config.topics import TOPICS
 from elimination.elimination_keys import elimination
 from elimination.elimination_exist import db_check
@@ -12,6 +11,6 @@ def news():
     for i in feeds.entries:
         new = f"Title: {i.title} Summary: {i.summary}"
         if elimination(new, TOPICS):
-            bbc.append({"published": i.published, "title": i.title, "link": i.id, "is_shared": False, "source": "bbc", "is_translated": False})
+            bbc.append({"published": i.published, "title": i.title, "summary": i.summary, "link": i.id, "is_shared": False, "source": "bbc", "is_translated": False})
     print(bbc)
     return db_check(bbc)
