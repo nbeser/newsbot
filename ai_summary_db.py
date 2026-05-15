@@ -14,6 +14,7 @@ def clean_json(text):
     text = text.replace("```json", "").replace("```", "")
     return text
 
+
 def ai_summaries():
 
     articles = text_extraction()

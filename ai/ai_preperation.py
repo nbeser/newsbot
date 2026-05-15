@@ -8,15 +8,12 @@ def data_fetch():
     try:
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT title, link FROM news WHERE is_translated=False LIMIT 4;")
+        cursor.execute("SELECT title, link FROM news WHERE is_translated=False LIMIT 3;")
         files = [{"title": title, "link": link} for title, link in cursor.fetchall()]
-
-        rows = cursor.fetchall()
-
         cursor.close()
         conn.close()
 
-        if not rows:
+        if not files:
             return []
 
         return files
