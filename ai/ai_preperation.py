@@ -10,8 +10,15 @@ def data_fetch():
         cursor = conn.cursor()
         cursor.execute("SELECT title, link FROM news WHERE is_translated=False LIMIT 4;")
         files = [{"title": title, "link": link} for title, link in cursor.fetchall()]
+
+        rows = cursor.fetchall()
+
         cursor.close()
         conn.close()
+
+        if not rows:
+            return []
+
         return files
     except Exception as err:
         print(err)

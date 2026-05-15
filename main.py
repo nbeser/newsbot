@@ -1,5 +1,5 @@
-# feeds_db  > will call news, filter and adds to db if they haven't been.
-# ai_preperation > must run after feeds_db. It fetches data including link and title. Gets main text from link and returns dict as {"title": title, "link": link, "content": main_text} This data is then ready to send to ai for translation.
+# 1 > feeds_db: gets new news and adds them into db
+# 2 > ai_summary_db: gets main text [:1000] and sends ai. Ai summarises and translates. Then, data is sent to db. 
 
 from feeds_db import insert_news
 from ai_summary_db import app

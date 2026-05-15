@@ -5,11 +5,21 @@ import json
 from ai.ai_preperation import text_extraction
 from ai.ai_processor import summarize_article
 
-insert_ai_summaries = DbManager()
+
+
+
+
+def clean_json(text):
+    text = text.strip()
+    text = text.replace("```json", "").replace("```", "")
+    return text
 
 def ai_summaries():
 
     articles = text_extraction()
+
+    if not articles:
+        return []
 
     articles_text = ""
 
@@ -35,18 +45,16 @@ def ai_summaries():
 
 
 
-def clean_json(text):
-    text = text.strip()
-    text = text.replace("```json", "").replace("```", "")
-    return text
-
 
 
 def app():
 
     summaries = ai_summaries()
-    # print("TYPE:", type(summaries))
-    # print("FIRST ITEM:", summaries[0])
+    
+    if not summaries:
+        print("No summaries returned")
+        return
+
     db = DbManager()
 
     db.insert_ai_summaries(summaries)
