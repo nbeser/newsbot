@@ -74,3 +74,24 @@ class DbManager():
         finally:
             self.cursor.close()
             self.connection.close()
+
+    
+    def telegram_shared(self, links):
+        sql = """
+        UPDATE news 
+        SET is_shared = True 
+        WHERE link = %s
+        """
+        values = []
+        for link in links:
+            values.append(link)
+        try:
+            self.cursor.executemany(sql, values)
+            self.connection.commit()
+            
+        except psycopg2.Error as err:
+            print(err)
+
+        finally:
+            self.cursor.close()
+            self.connection.close()

@@ -42,9 +42,15 @@ def ai_summaries():
 
     summaries = summarize_article(articles_text)
 
-    return json.loads(clean_json(summaries))
+    cleaned = clean_json(summaries)
 
+    try:
+        return json.loads(cleaned)
 
+    except json.JSONDecodeError as e:
+        print("JSON ERROR:", e)
+        print(cleaned)
+        return []
 
 
 
