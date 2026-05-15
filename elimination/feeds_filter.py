@@ -12,5 +12,5 @@ def news():
         new = f"Title: {i.title} Summary: {i.summary}"
         if elimination(new, TOPICS):
             bbc.append({"published": i.published, "title": i.title, "summary": i.summary, "link": i.id, "is_shared": False, "source": "bbc", "is_translated": False})
-    print(bbc)
+    # print(bbc)
     return db_check(bbc)
