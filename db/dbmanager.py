@@ -82,9 +82,7 @@ class DbManager():
         SET is_shared = True 
         WHERE link = %s
         """
-        values = []
-        for link in links:
-            values.append(link)
+        values = [(link,) for link in links]
         try:
             self.cursor.executemany(sql, values)
             self.connection.commit()
