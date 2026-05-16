@@ -38,7 +38,7 @@ def telegram():
             send_to_telegram(telegram_message)
             posted_files.append(i["link"])
             time.sleep(2)
-        print(posted_files)
+        # print(posted_files)
         db.telegram_shared(posted_files)
     except requests.exceptions.RequestException as err:
         print(err)
