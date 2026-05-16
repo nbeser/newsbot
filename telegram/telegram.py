@@ -45,4 +45,5 @@ def telegram():
 
 
 
-telegram()
+if __name__ == "__telegram__":
+    telegram()    
