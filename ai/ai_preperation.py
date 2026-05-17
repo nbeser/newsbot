@@ -8,7 +8,7 @@ def data_fetch():
     try:
         conn = get_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT title, link FROM news WHERE is_translated=False LIMIT 3;")
+        cursor.execute("SELECT title, link FROM news WHERE is_translated=False LIMIT 10;")
         files = [{"title": title, "link": link} for title, link in cursor.fetchall()]
         cursor.close()
         conn.close()
