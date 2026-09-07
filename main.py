@@ -5,10 +5,12 @@
 from feeds_db import insert_news
 from ai_summary_db import app
 from telegram.telegram import telegram
-
+from db.dbmanager import DbManager
 
 
 def main():
+    db = DbManager()
+    db.create_tables()
     insert_news()
     app()
     telegram()

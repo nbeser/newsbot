@@ -7,6 +7,26 @@ class DbManager():
     def __init__(self):
         self.connection = get_connection()
         self.cursor = self.connection.cursor()
+
+
+    def create_tables(self):
+        query = """
+        CREATE TABLE IF NOT EXISTS news (
+            id SERIAL PRIMARY KEY,
+            published TEXT,
+            title TEXT,
+            summary TEXT,
+            link TEXT UNIQUE,
+            is_shared BOOLEAN DEFAULT FALSE,
+            source TEXT,
+            is_translated BOOLEAN DEFAULT FALSE,
+            translated_title TEXT,
+            translated_summary TEXT
+        );
+        """
+        with self.connection.cursor() as cursor:
+            cursor.execute(query)
+            self.connection.commit()
     
     def save_news(self, news):
         sql = """

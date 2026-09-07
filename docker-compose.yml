@@ -9,11 +9,27 @@ services:
       - .:/app
     environment:
       - REDIS_URL=redis://redis:6379/0
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=newsbot_db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
     depends_on:
       - redis
+      - db
 
   # 2. Celery için Haberleşme Sunucusu (Redis)
   redis:
     image: redis:7-alpine
     ports:
       - "6379:6379"
+  
+  # 3. Veritabanı Servisimiz (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: newsbot_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
