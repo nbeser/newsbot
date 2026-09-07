@@ -1,3 +1,46 @@
+# 🤖 NewsBot: AI-Powered Automated News Aggregator
+
+![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED.svg)
+![Celery](https://img.shields.io/badge/Task%20Queue-Celery-green.svg)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-4169E1.svg)
+![Redis](https://img.shields.io/badge/Broker-Redis-DC382D.svg)
+
+An automated backend pipeline that aggregates RSS news feeds, processes and summarizes the content using AI models, stores structured records in PostgreSQL, and dispatches real-time updates to Telegram channels.
+
+---
+
+## 🏗 System Architecture & Workflow
+
+The platform runs on a containerized environment powered by Docker Compose:
+
+1. **Ingestion:** Continuously fetches global RSS news items.
+2. **AI Summarization:** Uses AI models to generate Turkish summaries and titles.
+3. **Task Queue & Scheduling:** Managed asynchronously via **Celery** with **Redis** as a message broker.
+4. **Persistence:** Stores structured articles in a **PostgreSQL** relational database.
+5. **Distribution:** Automatically dispatches updates via **Telegram Bot API**.
+
+---
+
+## 🚀 Quick Start (Dockerized)
+
+Ensure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed.
+
+### 1. Clone the repository
+```bash
+git clone [https://github.com/nbeser/newsbot.git](https://github.com/nbeser/newsbot.git)
+cd newsbot
+
+2. Configure Environment
+Set up your environment variables or Database credentials as configured in docker-compose.yml
+
+3. Run with Docker Compose
+Spin up the Python worker, Redis message broker, and PostgreSQL database with a single command:
+docker-compose up --build
+
+
+
+
 # NewsBot 🌍📰
 
 A fully automated global news bot that fetches news from RSS feeds, summarizes articles using AI, translates them into Turkish, and publishes formatted posts directly to Telegram.
@@ -142,26 +185,17 @@ BOT_TOKEN="your telegram bot token"
 
 ---
 
-## Current Status
+🛠 Tech Stack
+Language: Python 3.11
 
-Current version focuses on:
+Database: PostgreSQL (with Auto-schema initialization)
 
-* Telegram publishing
-* Single RSS source (BBC)
-* Turkish translation
-* Staying within Gemini free-tier limits
+Task Automation: Celery & Redis
 
-To reduce API usage, multiple news articles are sent to Gemini in a single request and returned as structured JSON output.
+Containerization: Docker & Docker Compose
 
----
+Notification System: Telegram Bot API
 
-## Roadmap
-
-### Next Steps
-
-* Deploy to server
-* Add cron scheduling
-* Improve automation frequency
 
 ### Future Improvements
 
