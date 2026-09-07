@@ -19,6 +19,15 @@ def send_to_telegram(message):
         "parse_mode": "HTML"
     }
 
-    response = requests.post(url, json=payload)
-
-    return response.json()
+    try:
+        response = requests.post(url, json=payload, timeout=45)
+        response.raise_for_status()
+        return response.json()
+    
+    except requests.exceptions.Timeout:
+        print("Telegram request timed out. The server took too long to respond.")
+        return {"ok": False, "error": "Timeout"}
+        
+    except requests.exceptions.RequestException as e:
+        print(f"A network error occurred: {e}")
+        return {"ok": False, "error": str(e)}
