@@ -40,7 +40,7 @@ docker-compose up --build
 
 
 
-
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # NewsBot 🌍📰
 
 A fully automated global news bot that fetches news from RSS feeds, summarizes articles using AI, translates them into Turkish, and publishes formatted posts directly to Telegram.
