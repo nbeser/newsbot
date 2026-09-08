@@ -1,18 +1,18 @@
 import os
 from celery import Celery
+from main import main
 
-# Redis adresini tanımlıyoruz
+# Redis 
 REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 
-# Celery uygulamasını başlatıyoruz
-app = Celery('newsbot_tasks', broker=REDIS_URL, backend=REDIS_URL)
+# Celery 
+celery_app = Celery('newsbot_tasks', broker=REDIS_URL, backend=REDIS_URL)
 
-# Görevi tanımlıyoruz
-@app.task
+# Task
+@celery_app.task
 def run_news_pipeline_task():
     print("--- Celery Görevi Başladı: RSS Çekiliyor ve AI İle Özetleniyor ---")
     
-    # BURAYA: Senin RSS çekme ve Telegram'a gönderme fonksiyonun gelecek!
-    # Örnek: senin_ana_fonksiyonun()
+    main()
     
     return "İşlem Tamamlandı!"
